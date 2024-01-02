@@ -1,0 +1,15 @@
+<!-- app/views/pdf_generator/generate_pdf.html.erb -->
+
+<h1>Generate PDF</h1>
+
+<%= form_tag pdf_generator_generate_pdf_path, method: :get do %>
+  <%= label_tag :content, 'Enter Content:' %>
+  <%= text_field_tag :content %>
+  <%= submit_tag 'Generate PDF' %>
+<% end %>
+
+<% if @pdf_content.present? %>
+  <h2>Generated PDF</h2>
+  <%= link_to 'Open PDF in New Tab', pdf_generator_generate_pdf_path(format: :pdf, content: params[:content]), target: '_blank' %>
+  <iframe src="<%= pdf_generator_generate_pdf_path(format: :pdf, content: params[:content]) %>" width="100%" height="600px"></iframe>
+<% end %>
